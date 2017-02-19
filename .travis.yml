@@ -16,10 +16,10 @@ script:
   - make info
   - make init
   - make env >env
+  - . ./env
   - pwd
   - ls -l ${HOME}
-  - set |grep =
-  - echo ---------------------
+  - ls -l
   - set -o posix
   - set
   - set +o posix
