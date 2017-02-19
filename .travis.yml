@@ -17,7 +17,12 @@ script:
   - make init
   - make env >env
   - pwd
+  - ls -l ${HOME}
   - set |grep =
+  - echo ---------------------
+  - set -o posix
+  - set
+  - set +o posix
 #  - make fetchtoolchain 2>&1 |tee /tmp/fetchtoolchain.out.txt |grep "^make "
 #  - make toolchain      2>&1 |tee /tmp/toolchain.out.txt      |grep -n .|grep "10:"
 #  - find sysroot        2>&1 |tee /tmp/sysroot.list.txt       |grep "crypt"
