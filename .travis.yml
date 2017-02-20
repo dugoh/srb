@@ -20,6 +20,8 @@ script:
   - wget -nd -r -np -P ${JOR1KSYSROOT}/ https://dugoh.github.io/tcb/
   - cat ${JOR1KSYSROOT}/sysroot.tar |tar -C ${SYSROOT} -xvf -
   - bunzip2 -c ${JOR1KSYSROOT}/opt.tar.bz2 |tar -C / -xvf -
+  - find ${HOME} -name types.h
+  - echo ${SYSROOT}
   - make history
 #  - make fetchtoolchain 2>&1 |tee /tmp/fetchtoolchain.out.txt |grep "^make "
 #  - make toolchain      2>&1 |tee /tmp/toolchain.out.txt      |grep -n .|grep "10:"
