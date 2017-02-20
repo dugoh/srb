@@ -17,12 +17,10 @@ script:
   - make init
   - make env >env
   - . ./env
-  - pwd
-  - ls -l ${HOME}
-  - ls -l
-  - set -o posix
-  - set
-  - set +o posix
+  - wget -nd -r -np -P ${JOR1KSYSROOT}/ https://dugoh.github.io/tcb/
+  - cat ${JOR1KSYSROOT}/sysroot.tar |tar -C ${SYSROOT} -xvf -
+  - bunzip2 -c ${JOR1KSYSROOT}/opt.tar.bz2 |tar -C / -xvf -
+  - make history
 #  - make fetchtoolchain 2>&1 |tee /tmp/fetchtoolchain.out.txt |grep "^make "
 #  - make toolchain      2>&1 |tee /tmp/toolchain.out.txt      |grep -n .|grep "10:"
 #  - find sysroot        2>&1 |tee /tmp/sysroot.list.txt       |grep "crypt"
