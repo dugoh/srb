@@ -22,7 +22,8 @@ script:
   - bunzip2 -c ${JOR1KSYSROOT}/opt.tar.bz2 |tar -C / -xvf -
   - find ${HOME} -name types.h
   - echo ${SYSROOT}
-  - make history
+  - strace -f -o /tmp/ooo make history
+  - grep types.h /tmp/ooo
 #  - make fetchtoolchain 2>&1 |tee /tmp/fetchtoolchain.out.txt |grep "^make "
 #  - make toolchain      2>&1 |tee /tmp/toolchain.out.txt      |grep -n .|grep "10:"
 #  - find sysroot        2>&1 |tee /tmp/sysroot.list.txt       |grep "crypt"
