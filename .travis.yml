@@ -17,7 +17,7 @@ script:
   - make info
   - make init
   - make history2
-  - cd ../jorik-sysroot
+  - cd jorik-sysroot
   - git init
   - git config user.name "${USER}"
   - git config user.email "${GHP_MAIL}"
