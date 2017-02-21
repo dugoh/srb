@@ -16,7 +16,7 @@ script:
   - ln -s ${TRAVIS_BUILD_DIR} ${TRAVIS_BUILD_DIR/srb/tcb}
   - make info
   - make init
-  - make history2
+  - make history2 2>&1 |tee /tmp/history2.out.txt |grep "bzip"
   - cd jorik-sysroot
   - git init
   - git config user.name "${USER}"
