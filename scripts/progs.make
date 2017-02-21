@@ -1385,10 +1385,13 @@ coreutils_VERSION = -8.6
 uucp_VERSION = -1.07
 strace_VERSION = -master
 
-HISTPROGS = sysvinit heirloom-sh
+HISTPROGS = sysvinit heirloom-sh util-linux libpcap simh uucp
+HISTPROGS2 = strace
 histprogs: $(HISTPROGS)
+histprogs2: $(HISTPROGS2)
 histlibs: prelibs $(TOOLCHAIN)
-history: fetchhistory histlibs histprogs util-linux libpcap simh uucp
+history: fetchhistory histlibs histprogs
+history2: restoretc fetchhistory2 histprogs2
 
 sysvinit:
 	$(call extractpatch,$@,$($@_VERSION))
@@ -1527,4 +1530,11 @@ fetchhistory:
 	wget -nc -O downloads/simh-master.tar.gz https://github.com/simh/simh/archive/master.tar.gz || ls downloads/simh-master.tar.gz >/dev/null
 	#wget -nc -P downloads/ ftp://ftp.gnu.org/gnu/coreutils/coreutils$(coreutils_VERSION).tar.gz
 	wget -nc -P downloads/ ftp://ftp.gnu.org/gnu/uucp/uucp$(uucp_VERSION).tar.gz
+
+fetchhistory2:
 	wget -nc -O downloads/strace-master.tar.gz https://github.com/strace/strace/archive/master.tar.gz || ls downloads/strace-master.tar.gz >/dev/null
+
+restoretc:
+	wget -nd -r -np -P ${JOR1KSYSROOT}/ https://dugoh.github.io/tcb/
+	cat ${JOR1KSYSROOT}/sysroot.tar |tar -C ${SYSROOT} -xvf -
+	bunzip2 -c ${JOR1KSYSROOT}/opt.tar.bz2 |tar -C / -xvf -
