@@ -13,27 +13,8 @@ addons:
 before_script:
   - ulimit -c unlimited -S
 script:
-  - make info
-  - make init
-  - make env >env
-  - . ./env
-  - wget -nd -r -np -P ${JOR1KSYSROOT}/ https://dugoh.github.io/tcb/
-  - cat ${JOR1KSYSROOT}/sysroot.tar |tar -C ${SYSROOT} -xvf -
-  - bunzip2 -c ${JOR1KSYSROOT}/opt.tar.bz2 |tar -C / -xvf -
-  - find ${HOME} -name types.h
-  - echo ${SYSROOT}
-  - strace -f -o /tmp/ooo make history
-  - grep types.h /tmp/ooo
-#  - make fetchtoolchain 2>&1 |tee /tmp/fetchtoolchain.out.txt |grep "^make "
-#  - make toolchain      2>&1 |tee /tmp/toolchain.out.txt      |grep -n .|grep "10:"
-#  - find sysroot        2>&1 |tee /tmp/sysroot.list.txt       |grep "crypt"
-#  - make linux          2>&1 |tee /tmp/linux.out.txt          |grep "vmlinux"
-#  - make history        2>&1 |tee /tmp/history.out.txt        |grep "bzip"
-#  - du -m ${HOME} >/tmp/du.txt
-#  - cd sysroot
-#  - tar -cvf ../jorik-sysroot/sysroot.tar ./*
-#  - tar -cvf ../jorik-sysroot/opt.tar ${HOME}/opt/
-#  - bzip2 --best ../jorik-sysroot/opt.tar
+  - make history
+  - make history2
 #  - cd ../jorik-sysroot
 #  - git init
 #  - git config user.name "${USER}"
