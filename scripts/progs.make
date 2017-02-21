@@ -1506,10 +1506,13 @@ uucp:
 	cd src/$@; cp cu.bz2 $(JOR1KSYSROOT)/cu.static.bz2
 
 strace:
-	printf "int\nmain ()\n{\n;\nreturn 0;\n}\n" >a.c
-	strace -f -o ooo or1k-linux-gnu-gcc a.c
-	cat ooo|grep "crt.\.o"
+	set|grep LIB|grep =
+	echo -----
 	find ${home}|grep "crt.\.o"
+	echo -----
+	printf "int\nmain ()\n{\n;\nreturn 0;\n}\n" >a.c
+	strace -f -o ooo or1k-linux-gnu-gcc a.c || cat ooo|grep "crt.\.o"
+	echo -----
 	$(call extractpatch,$@,$($@_VERSION))
 	cd src/$@; ./bootstrap
 	cd src/$@; ./configure $(CONFIG_HOST) || cat config.log
